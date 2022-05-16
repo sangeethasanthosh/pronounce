@@ -1,0 +1,92 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="pronounce">
+      <h2 data-cy="pronounceDetailsHeading"><span>Pronounce</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ pronounce.id }}</span>
+        </dd>
+        <dt><span>Employee Id</span></dt>
+        <dd>
+          <span>{{ pronounce.employeeId }}</span>
+        </dd>
+        <dt><span>First Name</span></dt>
+        <dd>
+          <span>{{ pronounce.firstName }}</span>
+        </dd>
+        <dt><span>Last Name</span></dt>
+        <dd>
+          <span>{{ pronounce.lastName }}</span>
+        </dd>
+        <dt><span>Preferred Name</span></dt>
+        <dd>
+          <span>{{ pronounce.preferredName }}</span>
+        </dd>
+        <dt><span>Phonetics</span></dt>
+        <dd>
+          <span>{{ pronounce.phonetics }}</span>
+        </dd>
+        <dt><span>Country</span></dt>
+        <dd>
+          <span>{{ pronounce.country }}</span>
+        </dd>
+        <dt><span>Language</span></dt>
+        <dd>
+          <span>{{ pronounce.language }}</span>
+        </dd>
+        <dt><span>Pronoun</span></dt>
+        <dd>
+          <span>{{ pronounce.pronoun }}</span>
+        </dd>
+        <dt><span>Pronunciation</span></dt>
+        <dd>
+          <div *ngIf="pronounce?.pronunciation">
+            <audio controls [src]="audioPath">
+            </audio>
+
+
+            <img [src] ="img"/>
+
+
+          </div>
+        </dd>
+        <dt><span>Created User</span></dt>
+        <dd>
+          <span>{{ pronounce.createdUser }}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+          <span>{{ pronounce.createdDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Updated User</span></dt>
+        <dd>
+          <span>{{ pronounce.updatedUser }}</span>
+        </dd>
+        <dt><span>Updated Date</span></dt>
+        <dd>
+          <span>{{ pronounce.updatedDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Is Active</span></dt>
+        <dd>
+          <span>{{ pronounce.isActive }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/pronounce', pronounce.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

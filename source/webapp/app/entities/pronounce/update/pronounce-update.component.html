@@ -1,0 +1,187 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-pronounce-heading" data-cy="PronounceCreateUpdateHeading">Create or edit a Pronounce</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_employeeId">Employee Id</label>
+          <input
+            type="text"
+            class="form-control"
+            name="employeeId"
+            id="field_employeeId"
+            data-cy="employeeId"
+            formControlName="employeeId"
+          />
+          <div *ngIf="editForm.get('employeeId')!.invalid && (editForm.get('employeeId')!.dirty || editForm.get('employeeId')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('employeeId')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_firstName">First Name</label>
+          <input type="text" class="form-control" name="firstName" id="field_firstName" data-cy="firstName" formControlName="firstName" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_lastName">Last Name</label>
+          <input type="text" class="form-control" name="lastName" id="field_lastName" data-cy="lastName" formControlName="lastName" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_preferredName">Preferred Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="preferredName"
+            id="field_preferredName"
+            data-cy="preferredName"
+            formControlName="preferredName"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_phonetics">Phonetics</label>
+          <input type="text" class="form-control" name="phonetics" id="field_phonetics" data-cy="phonetics" formControlName="phonetics" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_country">Country</label>
+          <input type="text" class="form-control" name="country" id="field_country" data-cy="country" formControlName="country" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_language">Language</label>
+          <input type="text" class="form-control" name="language" id="field_language" data-cy="language" formControlName="language" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_pronoun">Pronoun</label>
+          <input type="text" class="form-control" name="pronoun" id="field_pronoun" data-cy="pronoun" formControlName="pronoun" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_pronunciation">Pronunciation</label>
+          <div>
+            <div *ngIf="editForm.get('pronunciation')!.value" class="form-text text-danger clearfix">
+              <a
+                class="pull-start"
+                (click)="openFile(editForm.get('pronunciation')!.value, editForm.get('pronunciationContentType')!.value)"
+                >open</a
+              ><br />
+              <span class="pull-start"
+                >{{ editForm.get('pronunciationContentType')!.value }}, {{ byteSize(editForm.get('pronunciation')!.value) }}</span
+              >
+              <button
+                type="button"
+                (click)="editForm.patchValue({ pronunciation: null }); editForm.patchValue({ pronunciationContentType: null })"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input type="file" id="file_pronunciation" data-cy="pronunciation" (change)="setFileData($event, 'pronunciation', false)" />
+          </div>
+          <input
+            type="hidden"
+            class="form-control"
+            name="pronunciation"
+            id="field_pronunciation"
+            data-cy="pronunciation"
+            formControlName="pronunciation"
+          />
+          <input
+            type="hidden"
+            class="form-control"
+            name="pronunciationContentType"
+            id="field_pronunciationContentType"
+            formControlName="pronunciationContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_createdUser">Created User</label>
+          <input
+            type="text"
+            class="form-control"
+            name="createdUser"
+            id="field_createdUser"
+            data-cy="createdUser"
+            formControlName="createdUser"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_createdDate">Created Date</label>
+          <div class="d-flex">
+            <input
+              id="field_createdDate"
+              data-cy="createdDate"
+              type="datetime-local"
+              class="form-control"
+              name="createdDate"
+              formControlName="createdDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_updatedUser">Updated User</label>
+          <input
+            type="text"
+            class="form-control"
+            name="updatedUser"
+            id="field_updatedUser"
+            data-cy="updatedUser"
+            formControlName="updatedUser"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_updatedDate">Updated Date</label>
+          <div class="d-flex">
+            <input
+              id="field_updatedDate"
+              data-cy="updatedDate"
+              type="datetime-local"
+              class="form-control"
+              name="updatedDate"
+              formControlName="updatedDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_isActive">Is Active</label>
+          <input type="checkbox" class="form-check" name="isActive" id="field_isActive" data-cy="isActive" formControlName="isActive" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
