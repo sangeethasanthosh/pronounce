@@ -63,25 +63,7 @@ public class PronounceResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
 
-    @PostMapping("/pronounces/user/{userId}")
-    public Mono<ResponseEntity<Pronounce>> getPronounceByUser(@Valid @RequestBody String userId) throws URISyntaxException {
-        log.debug("REST request to save Pronounce : {}", pronounce);
-        if (pronounce.getId() != null) {
-            throw new BadRequestAlertException("A new pronounce cannot already have an ID", ENTITY_NAME, "idexists");
-        }
-        return pronounceService
-            .save(pronounce)
-            .map(result -> {
-                try {
-                    return ResponseEntity
-                        .created(new URI("/api/pronounces/" + result.getId()))
-                        .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
-                        .body(result);
-                } catch (URISyntaxException e) {
-                    throw new RuntimeException(e);
-                }
-            });
-    }
+
 
     @PostMapping("/pronounces")
     public Mono<ResponseEntity<Pronounce>> createPronounce(@Valid @RequestBody Pronounce pronounce) throws URISyntaxException {
@@ -218,6 +200,7 @@ public class PronounceResource {
             );
     }
 
+
     /**
      * {@code GET  /pronounces/:id} : get the "id" pronounce.
      *
@@ -230,6 +213,16 @@ public class PronounceResource {
         Mono<Pronounce> pronounce = pronounceService.findOne(id);
         return ResponseUtil.wrapOrNotFound(pronounce);
     }
+
+
+    @GetMapping("/pronounces/user/{id}")
+    public Mono<ResponseEntity<Pronounce>> getPronounce(@PathVariable String id) {
+        log.debug("REST request to get Pronounce : {}", id);
+        Mono<Pronounce> pronounce = pronounceService.findOneByUser(id);
+        return ResponseUtil.wrapOrNotFound(pronounce);
+    }
+
+
 
     /**
      * {@code DELETE  /pronounces/:id} : delete the "id" pronounce.
@@ -250,4 +243,5 @@ public class PronounceResource {
                     .build()
             );
     }
+
 }
