@@ -3,16 +3,16 @@ Hackathon
 
 # Install following software packages using pip
 
-# eng_to_ipa - used to generate phonetics for the given text
+1) eng_to_ipa - used to generate phonetics for the given text
 > pip install eng_to_ipa
 
-# gTTS (Google Text-to-Speech)is a Python library and CLI tool to interface with Google Translate text-to-speech API
+2) gTTS (Google Text-to-Speech)is a Python library and CLI tool to interface with Google Translate text-to-speech API
 > pip install gtts
 
-# Flask is a micro web application framework written used here to develop REST endpoints.
+3) Flask is a micro web application framework written used here to develop REST endpoints.
 > pip install flask
 
-# Deployment - use below command to run the application
+4) Deployment - use below command to run the application
 > flask run
 
 # Rest API usage:
