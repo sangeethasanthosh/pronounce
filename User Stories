@@ -1,0 +1,23 @@
+User Stories for the Name Pronunciation:
+•	As a developer, I need to design and implement the Name Pronunciation System.
+1.	The System to provide the standard pronunciation of employee name.
+2.	The System to provide a custom pronunciation to override the suggested pronunciation of the employee name.
+3.	The System to provide the phonetics of the employee name.
+
+•	As an administrator, I need to be able to maintain pronunciations so that the system operates properly.
+1.	Create an Admin Console for the user and role management.
+
+•	As a developer, I want to develop a mobile App for easy access.
+1.	Develop a mobile App which authenticates the user and provides the standard pronunciation by default.
+2.	User will be able to enter preferred name   and override the standard pronunciation by the custom pronunciation.
+
+•	As a developer, I need to perform the cloud Integration of the application.
+1.	I need check the cloud metrics.
+2.	I need to analyze the Cloud Cost.
+3.	I need to check the Cloud storage.
+4.	I need to test the System.
+
+•	As a developer, I need to develop and integrate the Google Cloud TTS API to get audio for the given text.
+
+•	As a developer, I need to develop an ON-PREM API (No cost solution) to provide the phonetics and audio file generation.
+
