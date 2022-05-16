@@ -17,14 +17,21 @@ Hackathon
 
 # Rest API usage:
 Below is the end point usage for getting phonetcis and creating the speech file. 
+
 http://localhost:5000/phonetics/{empId}/{name_to_pronounce}
 
 Example: 
 http://localhost:5000/phonetics/u812/Paul John
+
 Sample Response:
+
     {
+    
         "fileLocation": "u812-Paul John.mp3",
+        
         "phonetics": "pɔl ʤɑn"
+        
     }
+
 
 Note: Currently the audio file will generate in the location where the application is running. However we can specify a different location to generate the speech file and can update the file location in the response.
